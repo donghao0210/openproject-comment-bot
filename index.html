@@ -11,7 +11,6 @@
   <meta name="viewport" content="width=device-width">
   <title>OP Comment Writer</title>
 </head>
-
 <body>
   <div class="p-5">
     <div class="card">
@@ -19,18 +18,18 @@
         Make sure your API key & Story Number is correct before you SUBMIT.
       </div>
     </div>
-    <div class="card p-3">
+    <!-- <div class="card p-3">
       <p>
-      <!-- change the VALUE string to your Story Number for easier caccess -->
+      change the VALUE string to your Story Number for easier caccess
         Story No: <input class="form-control" id="myInput1" value="774"
           placeholder="Find Your Story No, COPY IT-> PASTE it into the HTML file value here." readonly></input>
       </p>
       <p>
-      <!-- change the VALUE string to your Story Number for easier access -->
+      change the VALUE string to your Story Number for easier access
         Story No: <input class="form-control" id="myInput2" value=""
           placeholder="Find Your Story No, COPY IT-> PASTE it into the HTML file value here." readonly></input>
       </p>
-      <!-- change the VALUE string to your api key for easier copy paste -->
+      change the VALUE string to your api key for easier copy paste
       Apikey: <input class="form-control" id="myInput" value="d0f4888770f950cc8755c3f6da8c8ee6c090719721b308758357235f7f3bcb33"
         placeholder="Find Your KEY at MY Account -> Access Token -> API -> Generate/Reset, COPY IT-> PASTE it into the HTML file value here."
         readonly></input>
@@ -39,16 +38,17 @@
         <button class="btn btn-light" onclick="apiClickToCopy1()">Copy Story 1</button>
         <button class="btn btn-light" onclick="apiClickToCopy2()">Copy Story 2</button>
         <button class="btn btn-light" onclick="apiClickToCopy()">Copy APIKEY</button>
-        <!-- <p>
+        <p>
         Story No 2: change in html file
-      </p> -->
-    </div>
+      </p>
+    </div> -->
     <div class="card p-5">
       <div class="mb-3">
         <label class="form-label">APIKEY</label>
-        <input type="text" class="form-control" id="apiNumber"
+        <input type="password" class="form-control" id="apiNumber"
           placeholder="Find Your KEY at MY Account -> Access Token -> API -> Generate/Reset, COPY IT, SAVE IT somewhere-> PASTE it here."
-          value="d0f4888770f950cc8755c3f6da8c8ee6c090719721b308758357235f7f3bcb33">
+          value="">
+          <input type="checkbox" class="me-2" onclick="showAPINum()">Show API KEY
       </div>
       <div class="mb-3">
         <label class="form-label">Story Number</label>
@@ -84,7 +84,6 @@
     var uname = 'apikey';
     var apiKey = uname + ':' + apiNo;
     const encodedToken = btoa(apiKey);
-    // const encodedToken = 'YXBpa2V5OmQyZGZiODE4Yjc5MmUxNDNhYzkxZTNkM2YyOGUxMTVkNGUxYTExYWUyZDdhYWU1YWE2NTBmY2Y2MTQ4Y2U3YmY=';
 
     var config = {
       headers: {
@@ -111,6 +110,15 @@
         if (!alert('Failed Please Check Your API Key & Story Number')) { window.location.reload(); }
       })
     // alert("Failed Please Check Your API Key & Story Number")
+  }
+
+  function showAPINum() {
+    var x = document.getElementById("apiNumber");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
   }
 
   function apiClickToCopy() {
