@@ -18,30 +18,6 @@
         Make sure your API key & Story Number is correct before you SUBMIT.
       </div>
     </div>
-    <!-- <div class="card p-3">
-      <p>
-      change the VALUE string to your Story Number for easier caccess
-        Story No: <input class="form-control" id="myInput1" value="774"
-          placeholder="Find Your Story No, COPY IT-> PASTE it into the HTML file value here." readonly></input>
-      </p>
-      <p>
-      change the VALUE string to your Story Number for easier access
-        Story No: <input class="form-control" id="myInput2" value=""
-          placeholder="Find Your Story No, COPY IT-> PASTE it into the HTML file value here." readonly></input>
-      </p>
-      change the VALUE string to your api key for easier copy paste
-      Apikey: <input class="form-control" id="myInput" value="d0f4888770f950cc8755c3f6da8c8ee6c090719721b308758357235f7f3bcb33"
-        placeholder="Find Your KEY at MY Account -> Access Token -> API -> Generate/Reset, COPY IT-> PASTE it into the HTML file value here."
-        readonly></input>
-      </p>
-      <p>
-        <button class="btn btn-light" onclick="apiClickToCopy1()">Copy Story 1</button>
-        <button class="btn btn-light" onclick="apiClickToCopy2()">Copy Story 2</button>
-        <button class="btn btn-light" onclick="apiClickToCopy()">Copy APIKEY</button>
-        <p>
-        Story No 2: change in html file
-      </p>
-    </div> -->
     <div class="card p-5">
       <div class="mb-3">
         <label class="form-label">APIKEY</label>
@@ -70,7 +46,16 @@
     BETA v1.0
   </div>
 </body>
-<footer>Disclaimer: The creator does not guarentee that the software will work as it should and does not have any responsibility if personal use it to abuse anything or anyone.</footer>
+<footer class="bg-light text-center text-lg-start">
+  <!-- Copyright -->
+  <div class="text-center p-3" style="background-color: rgba(0, 0, 0, 0.2);">
+    The misuse of the information in this website can result in criminal charges brought against the persons in question. The author(s) will not be held responsible in the event any criminal charges be brought against any individuals misusing the information in this website to break the law.
+    <br>
+    Contribute to this project on Github:
+    <a class="text-dark" href="https://github.com/donghao0210/openproject-comment-bot">donghao0210/openproject-comment-bot</a>
+  </div>
+  <!-- Copyright -->
+</footer>
 <script>
   function btnSubmit() {
 
@@ -99,17 +84,12 @@
 
     axios.post(session_url, data, config)
       .then((response) => {
-        // console.log(JSON.stringify(config))
-        // console.log(JSON.stringify(storyNo))
-        // console.log(JSON.stringify(comments))
-        console.log(response.status)
         if (!alert('Success Commented! \nCheck Your Story Here:\n' + url)) { window.location.reload(); }
       })
       .catch((error) => {
         console.error(error)
         if (!alert('Failed Please Check Your API Key & Story Number')) { window.location.reload(); }
       })
-    // alert("Failed Please Check Your API Key & Story Number")
   }
 
   function showAPINum() {
@@ -120,50 +100,6 @@
       x.type = "password";
     }
   }
-
-  function apiClickToCopy() {
-    // Get the text field
-    var copyText = document.getElementById("myInput");
-
-    // Select the text field
-    copyText.select();
-    // copyText.setSelectionRange(0, 99999); // For mobile devices
-
-    // Copy the text inside the text field
-    navigator.clipboard.writeText(copyText.value);
-
-    // Alert the copied text
-    alert("Copied the key: " + copyText.value);
-  }
-  function apiClickToCopy1() {
-    // Get the text field
-    var copyText = document.getElementById("myInput1");
-
-    // Select the text field
-    copyText.select();
-    // copyText.setSelectionRange(0, 99999); // For mobile devices
-
-    // Copy the text inside the text field
-    navigator.clipboard.writeText(copyText.value);
-
-    // Alert the copied text
-    alert("Copied the Story No 1: " + copyText.value);
-  }
-  function apiClickToCopy2() {
-    // Get the text field
-    var copyText = document.getElementById("myInput2");
-
-    // Select the text field
-    copyText.select();
-    // copyText.setSelectionRange(0, 99999); // For mobile devices
-
-    // Copy the text inside the text field
-    navigator.clipboard.writeText(copyText.value);
-
-    // Alert the copied text
-    alert("Copied the Story No 2: " + copyText.value);
-  }
-
 </script>
 
 </html>
