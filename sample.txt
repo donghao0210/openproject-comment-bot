@@ -1,0 +1,25 @@
+Date/Day : Task : Equipment/Development tools used : Lesson Learned
+Monday 29/8/2022 : Learning The Code : VS Code : How the the code is written in the real world 
+
+On Documents:
+Monday 29/8/2022 : Learning The Code : VS Code : How the the code is written
+<DATE>:<TASK>:<TOOLS>:<LEARNED>
+
+On OP:
+Monday 29/8/2022
+Learning The Code using VS Code and learned How the the code is written
+//////
+Monday 29/8/2022
+- Task:
+    Learning The Code
+
+- Tools Used:
+    VS Code
+
+- Learned:
+    learned How the the code is written
+
+<DATE>
+<TASK>
+<TOOLS>
+<LEARNED>

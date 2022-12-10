@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4"
+    crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <meta name="viewport" content="width=device-width">
+  <title>OP Comment Writer</title>
+</head>
+
+<body>
+  <div class="p-5">
+    <div class="card">
+      <div class="card-header fs-3">
+        Make sure your API key & Story Number is correct before you SUBMIT.
+      </div>
+    </div>
+    <div class="card p-3">
+      <p>
+      <!-- change the VALUE string to your Story Number for easier caccess -->
+        Story No: <input class="form-control" id="myInput1" value="774"
+          placeholder="Find Your Story No, COPY IT-> PASTE it into the HTML file value here." readonly></input>
+      </p>
+      <p>
+      <!-- change the VALUE string to your Story Number for easier access -->
+        Story No: <input class="form-control" id="myInput2" value=""
+          placeholder="Find Your Story No, COPY IT-> PASTE it into the HTML file value here." readonly></input>
+      </p>
+      <!-- change the VALUE string to your api key for easier copy paste -->
+      Apikey: <input class="form-control" id="myInput" value="d0f4888770f950cc8755c3f6da8c8ee6c090719721b308758357235f7f3bcb33"
+        placeholder="Find Your KEY at MY Account -> Access Token -> API -> Generate/Reset, COPY IT-> PASTE it into the HTML file value here."
+        readonly></input>
+      </p>
+      <p>
+        <button class="btn btn-light" onclick="apiClickToCopy1()">Copy Story 1</button>
+        <button class="btn btn-light" onclick="apiClickToCopy2()">Copy Story 2</button>
+        <button class="btn btn-light" onclick="apiClickToCopy()">Copy APIKEY</button>
+        <!-- <p>
+        Story No 2: change in html file
+      </p> -->
+    </div>
+    <div class="card p-5">
+      <div class="mb-3">
+        <label class="form-label">APIKEY</label>
+        <input type="text" class="form-control" id="apiNumber"
+          placeholder="Find Your KEY at MY Account -> Access Token -> API -> Generate/Reset, COPY IT, SAVE IT somewhere-> PASTE it here."
+          value="d0f4888770f950cc8755c3f6da8c8ee6c090719721b308758357235f7f3bcb33">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Story Number</label>
+        <input type="number" class="form-control" id="storyNo" value="774" placeholder="E.g. 456">
+      </div>
+      <div class="mb-3">
+        <label class="form-label">Comments</label>
+        <textarea class="form-control" rows="3" placeholder="@Comments" id="comments"></textarea>
+      </div>
+      <div class="form-check form-switch">
+        <input class="form-check-input" type="checkbox" role="switch" id="flexSwitchCheckDefault" disabled>
+        <label class="form-check-label" for="flexSwitchCheckDefault" id="updateLogBook">Update Log Book (Comming
+          Soon)</label>
+      </div>
+      <div class="d-grid gap-2 d-md-flex justify-content-md-end">
+      </div>
+      <button class="btn btn-primary btn-lg mt-5" onclick="btnSubmit()">Submit</button>
+    </div>
+    BETA v1.0
+  </div>
+</body>
+<footer>Disclaimer: The creator does not guarentee that the software will work as it should and does not have any responsibility if personal use it to abuse anything or anyone.</footer>
+<script>
+  function btnSubmit() {
+
+    const apiNo = document.getElementById("apiNumber").value;
+    const storyNo = document.getElementById("storyNo").value;
+    const comments = document.getElementById("comments").value;
+    const updateLogBook = document.getElementById("updateLogBook").value;
+
+    var session_url = 'https://agile.kambyan.net/api/v3/work_packages/' + `${storyNo}` + '/activities';
+    var url = 'https://agile.kambyan.net/projects/midags/work_packages/' + `${storyNo}` + '/activity'
+    var uname = 'apikey';
+    var apiKey = uname + ':' + apiNo;
+    const encodedToken = btoa(apiKey);
+    // const encodedToken = 'YXBpa2V5OmQyZGZiODE4Yjc5MmUxNDNhYzkxZTNkM2YyOGUxMTVkNGUxYTExYWUyZDdhYWU1YWE2NTBmY2Y2MTQ4Y2U3YmY=';
+
+    var config = {
+      headers: {
+        'Authorization': 'Basic ' + encodedToken
+      },
+    };
+
+    var data = {
+      comment: {
+        "raw": comments,
+      }
+    }
+
+    axios.post(session_url, data, config)
+      .then((response) => {
+        // console.log(JSON.stringify(config))
+        // console.log(JSON.stringify(storyNo))
+        // console.log(JSON.stringify(comments))
+        console.log(response.status)
+        if (!alert('Success Commented! \nCheck Your Story Here:\n' + url)) { window.location.reload(); }
+      })
+      .catch((error) => {
+        console.error(error)
+        if (!alert('Failed Please Check Your API Key & Story Number')) { window.location.reload(); }
+      })
+    // alert("Failed Please Check Your API Key & Story Number")
+  }
+
+  function apiClickToCopy() {
+    // Get the text field
+    var copyText = document.getElementById("myInput");
+
+    // Select the text field
+    copyText.select();
+    // copyText.setSelectionRange(0, 99999); // For mobile devices
+
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(copyText.value);
+
+    // Alert the copied text
+    alert("Copied the key: " + copyText.value);
+  }
+  function apiClickToCopy1() {
+    // Get the text field
+    var copyText = document.getElementById("myInput1");
+
+    // Select the text field
+    copyText.select();
+    // copyText.setSelectionRange(0, 99999); // For mobile devices
+
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(copyText.value);
+
+    // Alert the copied text
+    alert("Copied the Story No 1: " + copyText.value);
+  }
+  function apiClickToCopy2() {
+    // Get the text field
+    var copyText = document.getElementById("myInput2");
+
+    // Select the text field
+    copyText.select();
+    // copyText.setSelectionRange(0, 99999); // For mobile devices
+
+    // Copy the text inside the text field
+    navigator.clipboard.writeText(copyText.value);
+
+    // Alert the copied text
+    alert("Copied the Story No 2: " + copyText.value);
+  }
+
+</script>
+
+</html>
