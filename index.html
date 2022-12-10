@@ -11,7 +11,6 @@
   <meta name="viewport" content="width=device-width">
   <title>OP Comment Writer</title>
 </head>
-
 <body>
   <div class="p-5">
     <div class="card">
@@ -19,36 +18,13 @@
         Make sure your API key & Story Number is correct before you SUBMIT.
       </div>
     </div>
-    <div class="card p-3">
-      <p>
-      <!-- change the VALUE string to your Story Number for easier caccess -->
-        Story No: <input class="form-control" id="myInput1" value="774"
-          placeholder="Find Your Story No, COPY IT-> PASTE it into the HTML file value here." readonly></input>
-      </p>
-      <p>
-      <!-- change the VALUE string to your Story Number for easier access -->
-        Story No: <input class="form-control" id="myInput2" value=""
-          placeholder="Find Your Story No, COPY IT-> PASTE it into the HTML file value here." readonly></input>
-      </p>
-      <!-- change the VALUE string to your api key for easier copy paste -->
-      Apikey: <input class="form-control" id="myInput" value=""
-        placeholder="Find Your KEY at MY Account -> Access Token -> API -> Generate/Reset, COPY IT-> PASTE it into the HTML file value here."
-        readonly></input>
-      </p>
-      <p>
-        <button class="btn btn-light" onclick="apiClickToCopy1()">Copy Story 1</button>
-        <button class="btn btn-light" onclick="apiClickToCopy2()">Copy Story 2</button>
-        <button class="btn btn-light" onclick="apiClickToCopy()">Copy APIKEY</button>
-        <!-- <p>
-        Story No 2: change in html file
-      </p> -->
-    </div>
     <div class="card p-5">
       <div class="mb-3">
         <label class="form-label">APIKEY</label>
-        <input type="text" class="form-control" id="apiNumber"
+        <input type="password" class="form-control" id="apiNumber"
           placeholder="Find Your KEY at MY Account -> Access Token -> API -> Generate/Reset, COPY IT, SAVE IT somewhere-> PASTE it here."
           value="">
+          <input type="checkbox" class="me-2" onclick="showAPINum()">Show API KEY
       </div>
       <div class="mb-3">
         <label class="form-label">Story Number</label>
@@ -93,7 +69,6 @@
     var uname = 'apikey';
     var apiKey = uname + ':' + apiNo;
     const encodedToken = btoa(apiKey);
-    // const encodedToken = 'YXBpa2V5OmQyZGZiODE4Yjc5MmUxNDNhYzkxZTNkM2YyOGUxMTVkNGUxYTExYWUyZDdhYWU1YWE2NTBmY2Y2MTQ4Y2U3YmY=';
 
     var config = {
       headers: {
@@ -109,62 +84,22 @@
 
     axios.post(session_url, data, config)
       .then((response) => {
-        // console.log(JSON.stringify(config))
-        // console.log(JSON.stringify(storyNo))
-        // console.log(JSON.stringify(comments))
-        console.log(response.status)
         if (!alert('Success Commented! \nCheck Your Story Here:\n' + url)) { window.location.reload(); }
       })
       .catch((error) => {
         console.error(error)
         if (!alert('Failed Please Check Your API Key & Story Number')) { window.location.reload(); }
       })
-    // alert("Failed Please Check Your API Key & Story Number")
   }
 
-  function apiClickToCopy() {
-    // Get the text field
-    var copyText = document.getElementById("myInput");
-
-    // Select the text field
-    copyText.select();
-    // copyText.setSelectionRange(0, 99999); // For mobile devices
-
-    // Copy the text inside the text field
-    navigator.clipboard.writeText(copyText.value);
-
-    // Alert the copied text
-    alert("Copied the key: " + copyText.value);
+  function showAPINum() {
+    var x = document.getElementById("apiNumber");
+    if (x.type === "password") {
+      x.type = "text";
+    } else {
+      x.type = "password";
+    }
   }
-  function apiClickToCopy1() {
-    // Get the text field
-    var copyText = document.getElementById("myInput1");
-
-    // Select the text field
-    copyText.select();
-    // copyText.setSelectionRange(0, 99999); // For mobile devices
-
-    // Copy the text inside the text field
-    navigator.clipboard.writeText(copyText.value);
-
-    // Alert the copied text
-    alert("Copied the Story No 1: " + copyText.value);
-  }
-  function apiClickToCopy2() {
-    // Get the text field
-    var copyText = document.getElementById("myInput2");
-
-    // Select the text field
-    copyText.select();
-    // copyText.setSelectionRange(0, 99999); // For mobile devices
-
-    // Copy the text inside the text field
-    navigator.clipboard.writeText(copyText.value);
-
-    // Alert the copied text
-    alert("Copied the Story No 2: " + copyText.value);
-  }
-
 </script>
 
 </html>
