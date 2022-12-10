@@ -103,10 +103,11 @@
   }
 
   function sendToDiscord(storyNo, comments) {
+    const date = new Date().toLocaleString()
     const url = ""
 
     const data = {
-      "content": "Good day boiz, comments have been added to User Story: #" + storyNo + "\nComments: " + comments + "\nURL: " + "https://agile.kambyan.net/projects/midags/work_packages/" + storyNo + "/activity"
+      "content": "========================"+ date +"========================\nGood day boiz, comments have been added to User Story: #" + storyNo + "\nComments: " + comments + "\nURL: " + "https://agile.kambyan.net/projects/midags/work_packages/" + storyNo + "/activity"
     }
 
     axios.post(url, data)
